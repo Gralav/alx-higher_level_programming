@@ -1,27 +1,23 @@
-#ifndef LISTS_H
-#define LISTS_H
-
-#include <stdlib.h>
-
+#include "lists.h"
 
 /**
- * struct listint_s - singly linked list
- * @n: integer
- * @next: points to the next node
- * Description: singly linked list node structure
- * for alx project
+ * check_cycle - checks if a linked list is circular or not
+ * @list: linked list to check
+ * Return: 1 (linked list is circular) 0 (no loop detected)
  */
-typedef struct listint_s
+int check_cycle(listint_t *list)
 {
-	int n;
-	struct listint_s *next;
+	listint_t *s1 = NULL, *s2 = NULL;
 
-} listint_t;
-
-size_t print_listint(const listint_t *h);
-listint_t *add_nodeint(listint_t **head, const int n);
-void free_listint(listint_t *head);
-int check_cycle(listint_t *list);
-
-
-#endif /* LISTS_H */
+	s1 = s2 = list;
+	while (list && s1 && s2 && s1->next && s2->next)
+	{
+		s1 = s1->next;
+		s2 = s2->next->next;
+		if (!s2 || !s1)
+			return (0);
+		if (s2->next == s1)
+			return (1);
+	}
+	return (0);
+}
