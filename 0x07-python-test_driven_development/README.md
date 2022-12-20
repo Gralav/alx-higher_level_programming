@@ -148,4 +148,4 @@ Identical in function to 100-matrix_mul.py.
 
 
 
-102-python.c: C function that prints basic information about Python string objects
+102-python.c: C function that prints basic information about Python string objects.
