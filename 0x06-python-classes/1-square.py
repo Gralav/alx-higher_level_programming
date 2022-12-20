@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-
-"""
-write a function that prints the first x elements of a list and only integers.
-"""
+"""Define a class Square."""
 
 
 class Square:
-    """Initialize a class with init"""
+    """Represent a square."""
+
     def __init__(self, size):
-        self.__size = 
+        """Initialize a new Square.
+        Args:
+            size (int): The size of the new square.
+        """
+        self.__size = size
