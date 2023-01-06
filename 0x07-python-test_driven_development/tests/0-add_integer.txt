@@ -1,62 +1,124 @@
-#!/usr/bin/python3
-# 6-max_integer_test.py
-"""Unittests for max_integer([..])."""
+# 0-add_integer.txt
+===========================
+How to Use 0-add_integer.py
+===========================
 
-import unittest
-max_integer = __import__('6-max_integer').max_integer
+This module defines an integer addition function ``add_integer(a, b=98)``.
 
+Usage
+=====
 
-class TestMaxInteger(unittest.TestCase):
-    """Define unittests for max_integer([..])."""
+``add_integer(...)``` returns the addition of its two arguments. For numbers,
+that value is equivalent to using the ``+`` operator.
 
-    def test_ordered_list(self):
-        """Test an ordered list of integers."""
-        ordered = [1, 2, 3, 4]
-        self.assertEqual(max_integer(ordered), 4)
+::
 
-    def test_unordered_list(self):
-        """Test an unordered list of integers."""
-        unordered = [1, 2, 4, 3]
-        self.assertEqual(max_integer(unordered), 4)
+    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(2, 3)
+    5
 
-    def test_max_at_begginning(self):
-        """Test a list with a beginning max value."""
-        max_at_beginning = [4, 3, 2, 1]
-        self.assertEqual(max_integer(max_at_beginning), 4)
+::
 
-    def test_empty_list(self):
-        """Test an empty list."""
-        empty = []
-        self.assertEqual(max_integer(empty), None)
+    >>> add_integer(2, -3)
+    -1
 
-    def test_one_element_list(self):
-        """Test a list with a single element."""
-        one_element = [7]
-        self.assertEqual(max_integer(one_element), 7)
+The function also works with floating-point values.
 
-    def test_floats(self):
-        """Test a list of floats."""
-        floats = [1.53, 6.33, -9.123, 15.2, 6.0]
-        self.assertEqual(max_integer(floats), 15.2)
+::
 
-    def test_ints_and_floats(self):
-        """Test a list of ints and floats."""
-        ints_and_floats = [1.53, 15.5, -9, 15, 6]
-        self.assertEqual(max_integer(ints_and_floats), 15.5)
+    >>> add_integer(2.0, 3.0)
+    5
 
-    def test_string(self):
-        """Test a string."""
-        string = "Brennan"
-        self.assertEqual(max_integer(string), 'r')
+Note that floats are casted to ints before addition is performed.
 
-    def test_list_of_strings(self):
-        """Test a list of strings."""
-        strings = ["Brennan", "is", "my", "name"]
-        self.assertEqual(max_integer(strings), "name")
+::
 
-    def test_empty_string(self):
-        """Test an empty string."""
-        self.assertEqual(max_integer(""), None)
+    >>> add_integer(2.9, 0.2)
+    2
 
-if __name__ == '__main__':
-    unittest.main()
+::
+
+    >>> add_integer(-2.9, -0.2)
+    -2
+
+Floating and non-floating point values can be combined.
+
+::
+
+    >>> add_integer(2.3, -3)
+    -1
+
+The second argument is optional - by default, it is 98.
+
+::
+
+    >>> add_integer(2)
+    100
+
+Non-Numbers
+===========
+
+``add_integer()`` expects that both arguments are either integers or floats.
+If either argument is a non-integer and non-float, a TypeError is raised:
+
+::
+
+    >>> add_integer("hello", 3)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+::
+
+    >>> add_integer(2, "hello")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+::
+
+    >>> add_integer(None)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+::
+
+    >>> add_integer(2.3, None)
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+If both arguments are non-integers and non-floats, a TypeError message is only
+printed for the first argument.
+
+::
+
+    >>> add_integer("hello", "there")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+The function will fail if infinity is provided.
+
+::
+
+    >>> add_integer(float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+     
+
+::
+
+    >>> add_integer(2, float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+And again with NaN numbers.
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+::
+
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
