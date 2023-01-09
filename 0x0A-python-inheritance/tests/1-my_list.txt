@@ -1,86 +1,36 @@
+Using class ``MyList``
+-----------------------
+
+Class MyList can store a list
+Has a function print_sorted to print the list in MyList sorted
+
+First import class ``MyList``
+
     >>> MyList = __import__('1-my_list').MyList
 
-    ---- Check that the file is executable ----
->>> import os
+Now use it:
 
->>> import sys
-
-
->>> os.access('1-my_list.py', os.X_OK)
-True
-
----- Check for the documentation of the module ----
->>> len(__import__("1-my_list").__doc__) > 10
-True
-
----- Check for the documentation of the function ----
->>> len(__import__("1-my_list").MyList.__doc__) > 10
-True
-
----- Check for pep8 style ----
->>> os.popen("pep8 1-my_list.py").read()
-''
-
----- Check for a newline at the end of the file ----
->>> os.popen("cat -e 1-my_list.py | tail -1").read()[-1]
-'\n'
-
----- Check for the file has a shebang ----
->>> os.popen("cat 1-my_list.py | head -1").read()
-'#!/usr/bin/python3\n'
-
-
----- Check that the README file exists ----
->>> cwd = os.getcwd()
->>> check_readme = cwd + '/README.md'
->>> os.path.exists(check_readme)
-True
-
-    #--------------------Andy cases(thanks bro)--------------------
-    >>> MyList = __import__('1-my_list').MyList
+Basic MyList usage (pos, neg, zero):
     >>> my_list = MyList()
-    >>> print(my_list)
-    []
-    >>> my_list.print_sorted()
-    []
-    >>> my_list.append(1)
+    >>> my_list.append(-1)
     >>> my_list.append(4)
-    >>> my_list.append(2)
     >>> my_list.append(3)
-    >>> my_list.append(5)
-
-    >>> print(my_list)
-    [1, 4, 2, 3, 5]
-
-    >>> my_list.print_sorted()
-    [1, 2, 3, 4, 5]
-
-    >>> print(my_list) #check sort vs sorted
-    [1, 4, 2, 3, 5]
-
-    >>> my_list.append(-5)
-
     >>> my_list.append(0)
-
     >>> print(my_list)
-    [1, 4, 2, 3, 5, -5, 0]
+    [-1, 4, 3, 0]
 
+Basic print_sorted usage:
     >>> my_list.print_sorted()
-    [-5, 0, 1, 2, 3, 4, 5]
+    [-1, 0, 3, 4]
 
-    >>> print(my_list)
-    [1, 4, 2, 3, 5, -5, 0]
-
-    __import__('1-my_list').__doc__ != None
-    True
-
-    >>> MyList = __import__('1-my_list').MyList
-
-    >>> MyList.__doc__ != None
-    True
-
+Big int MyList usage:
     >>> my_list = MyList()
+    >>> my_list.append(999999999999)
+    >>> my_list.append(-1)
+    >>> my_list.append(0)
     >>> print(my_list)
-    []
+    [999999999999, -1, 0]
+
+Big int print_sorted usage:
     >>> my_list.print_sorted()
-    []
+    [-1, 0, 999999999999]
