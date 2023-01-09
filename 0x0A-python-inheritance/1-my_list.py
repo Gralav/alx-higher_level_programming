@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""
-Write a class MyList that inherits from list:
-    *Public instance method: def print_sorted(self): that prints the list,
-    but sorted (ascending sort)
-    *You can assume that all the elements of the list will be of type int
-    *You are not allowed to import any module
+"""MyList
 """
 
 
 class MyList(list):
-    """This function print every method of the super class"""
+    """Contains list
+    """
+
     def print_sorted(self):
+        """Prints self in sorted format
+        """
+
         print(sorted(self))
