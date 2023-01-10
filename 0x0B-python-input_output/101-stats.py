@@ -32,7 +32,6 @@ if __name__ == "__main__":
                 count = 1
             else:
                 count += 1
-
             line = line.split()
 
             try:
@@ -53,4 +52,4 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print_stats(size, status_codes)
-        raise
+        raise         
