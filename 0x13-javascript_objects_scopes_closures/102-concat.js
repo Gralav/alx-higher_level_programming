@@ -1,10 +1,18 @@
 #!/usr/bin/node
+
 const fs = require('fs');
-let first = "";
-let second = "";
-fs.readFile('hola', 'utf-8', (err, data) =>{
+
+const myArray = process.argv.slice(2);
+
+fs.readFile(myArray[0], (err, data) => {
   if (err) throw err;
-  first = data;
-  second = first + first + first;
-  console.log(second);
+  fs.appendFile(myArray[2], data, (err) => {
+    if (err) throw err;
+  });
+});
+fs.readFile(myArray[1], (err, data) => {
+  if (err) throw err;
+  fs.appendFile(myArray[2], data, (err) => {
+    if (err) throw err;
+  });
 });
