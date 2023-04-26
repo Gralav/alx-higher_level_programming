@@ -1,14 +1,26 @@
 #!/usr/bin/node
-
-const myArray = process.argv.slice(2);
+/*
+ * Script that prints all characters of a Star Wars Movie
+ *
+*/
+const movieId = process.argv[2];
 const request = require('request');
+const url = 'https://swapi-api.hbtn.io/api/films/' + movieId;
 
-if (Number.isInteger(parseInt(myArray[0]))) {
-  request('http://swapi.co/api/films/' + myArray[0], function (error, response, body) {
-    if (error) console.error('error:', error);
-    JSON.parse(body).characters.forEach(link => request(link, (error, response, body) => {
-      if (error) console.error('error:', error);
-      console.log(JSON.parse(body).name);
-    }));
-  });
-}
+request.get(url, (err, res, body) => {
+  if (err) {
+    console.error(err);
+  } else {
+    const characters = JSON.parse(body).characters;
+    for (let i = 0; i < characters.length; i++) {
+      request.get(characters[i], (err, res, body) => {
+        if (err) {
+          console.error(err);
+        } else {
+          const name = JSON.parse(body).name;
+          console.log(name);
+        }
+      });
+    }
+  }
+});
